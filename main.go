@@ -27,6 +27,13 @@ func main() {
 
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
+		name := c.Query("name")
+		if name != "" {
+			c.JSON(http.StatusOK, gin.H{
+				"message": "Hello " + name,
+			})
+			return
+		}
 		c.JSON(http.StatusOK, gin.H{
 			"message": "Hello World",
 		})
